@@ -1,0 +1,82 @@
+<!--  -->
+<template>
+  <view class='demo' hidden="{{isHidden}}">
+    <view class="hei-toast">
+      <image src="{{icon}}"></image>
+      <text>{{title}}</text>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class Example extends wepy.component {
+  props = {}
+
+  data = {
+    icon:
+      'http://b347.photo.store.qq.com/psb?/V110hUaC2ecM8F/dP1DeJMTCUD25g*cX01K6zMs.wJgdjIhIX*C7sBkEUI!/m/dFsBAAAAAAAAnull&bo=1gC*AAAAAAARB1k!&rf=photolist&t=5',
+    title: '自定义标题',
+    isHidden: true
+  }
+
+  components = {}
+
+  methods = {
+    show: opt => {
+      this.icon =
+        opt.icon ||
+        'http://b347.photo.store.qq.com/psb?/V110hUaC2ecM8F/dP1DeJMTCUD25g*cX01K6zMs.wJgdjIhIX*C7sBkEUI!/m/dFsBAAAAAAAAnull&bo=1gC*AAAAAAARB1k!&rf=photolist&t=5'
+      this.title = opt.title || '自定义标题'
+      this.isHidden = false
+      setTimeout(() => {
+        this.isHidden = true
+        this.$apply()
+      }, opt.duration || 2000)
+    }
+  }
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+page {
+  height: 100%;
+}
+.demo {
+  // position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(129, 115, 115, 0.3);
+  // opacity: 0.3;
+
+  .hei-toast {
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 100rpx 0;
+    box-sizing: border-box;
+
+    image {
+      width: 500rpx;
+      height: 400rpx;
+    }
+  }
+}
+</style>
